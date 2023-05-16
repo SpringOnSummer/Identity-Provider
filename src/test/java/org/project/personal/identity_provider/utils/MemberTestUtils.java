@@ -1,42 +1,42 @@
 package org.project.personal.identity_provider.utils;
 
 import org.project.personal.identity_provider.dto.request.JoinRequest;
-import org.project.personal.identity_provider.dto.request.UserEmail;
-import org.project.personal.identity_provider.entity.User;
+import org.project.personal.identity_provider.dto.request.MemberEmail;
+import org.project.personal.identity_provider.entity.Member;
 import org.springframework.test.util.ReflectionTestUtils;
 
-public class UserTestUtils {
+public class MemberTestUtils {
 
     public static JoinRequest getJoinRequest(){
         JoinRequest joinRequest = new JoinRequest();
         /**
          *     private String email;
-         *     private String userName;
+         *     private String memberName;
          *     private String nickName;
          *     private String password;
          *
          *     {
          *     "email" : "test@email.com",
-         *     "userName" : "test_user",
+         *     "memberName" : "test_member",
          *     "nickName" : "nickName",
          *     "password" : "password"
          *      }
          */
 
         ReflectionTestUtils.setField(joinRequest, "email", "test@email.com");
-        ReflectionTestUtils.setField(joinRequest, "userName","test_user");
+        ReflectionTestUtils.setField(joinRequest, "memberName","test_member");
         ReflectionTestUtils.setField(joinRequest, "password","password");
 
         return joinRequest;
     }
 
-    public static User getUser(){
+    public static Member getMember(){
         JoinRequest joinRequest = getJoinRequest();
 
-        UserEmail email = UserEmailUtils.getUserEmail(joinRequest.getEmail());
+        MemberEmail email = MembersEmailUtils.convertEmail(joinRequest.getEmail());
 
-        return User.builder()
-                .userName(joinRequest.getUserName())
+        return Member.builder()
+                .memberName(joinRequest.getMemberName())
                 .emailLocal(email.getLocal())
                 .emailDomain(email.getDomain())
                 .password(joinRequest.getPassword())
