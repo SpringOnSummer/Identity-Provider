@@ -1,17 +1,17 @@
 package org.project.personal.identity_provider.utils;
 
-import org.project.personal.identity_provider.dto.request.UserEmail;
+import org.project.personal.identity_provider.dto.request.MemberEmail;
 
 import java.util.StringTokenizer;
 
-public class UserEmailUtils {
+public class MembersEmailUtils {
 
-    private UserEmailUtils() {}
+    private MembersEmailUtils() {}
 
-    public static UserEmail getUserEmail(String  email) {
+    public static MemberEmail convertEmail(String  email) {
         StringTokenizer st = new StringTokenizer(email, "@");
 
-        return UserEmail.builder()
+        return MemberEmail.builder()
                 .local(st.nextToken())
                 .domain(st.nextToken())
                 .build();
