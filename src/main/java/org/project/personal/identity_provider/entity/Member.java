@@ -9,30 +9,30 @@ import javax.persistence.*;
 
 /**
  *
- CREATE TABLE users(
- user_id BIGINT AUTO_INCREMENT,
- user_name VARCHAR(100) NOT NULL ,
+ CREATE TABLE members(
+ member_id BIGINT AUTO_INCREMENT,
+ member_name VARCHAR(100) NOT NULL ,
  email_local VARCHAR(100) NOT NULL ,
  email_domain VARCHAR(100) NOT NULL ,
  password VARCHAR(100) NOT NULL ,
  CONSTRAINT
- PRIMARY KEY (user_id)
+ PRIMARY KEY (member_id)
  );
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "members")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "member_name")
+    private String memberName;
 
     @Column(name = "email_local")
     private String emailLocal;
@@ -44,9 +44,9 @@ public class User {
     private String password;
 
     @Builder
-    public User(Long id, String userName, String emailLocal, String emailDomain, String password) {
+    public Member(Long id, String memberName, String emailLocal, String emailDomain, String password) {
         this.id = id;
-        this.userName = userName;
+        this.memberName = memberName;
         this.emailLocal = emailLocal;
         this.emailDomain = emailDomain;
         this.password = password;

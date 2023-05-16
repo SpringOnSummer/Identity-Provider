@@ -10,7 +10,7 @@ import lombok.ToString;
 public class JoinRequest {
 
     private String email;
-    private String userName;
+    private String memberName;
     private String password;
 
 }
