@@ -3,10 +3,8 @@ spring:
     config:
       enabled: false
   autoconfigure:
-    #TODO 01: Spring DataSourceAutoConfiguration 사용안함
     exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration, org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
-  #TODO 06: org.apache.commons, commons-dbcp2 properties 추가
   datasource:
     dbcp2:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -24,10 +22,6 @@ spring:
       test-on-borrow: true
       test-on-return: true
       validation-query: SELECT 1
-  jpa:
-    hibernate:
-      ddl-auto: none
-
 
 eureka:
   client:
