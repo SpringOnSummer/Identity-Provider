@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  * );
  */
 @Entity
-@Table(name = "`Member_details`")
+@Table(name = "member_details")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class MemberDetail {
