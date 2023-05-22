@@ -5,25 +5,25 @@ import org.project.personal.identity_provider.entity.Member;
 import org.project.personal.identity_provider.utils.MemberTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.empty;
 
+@ActiveProfiles("test")
 @DataJpaTest
-@Transactional
 class MemberRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;
 
     @Autowired
-    EntityManager entityManager;
+    TestEntityManager entityManager;
 
     @Test
     void save(){
@@ -36,8 +36,6 @@ class MemberRepositoryTest {
 
     @Test
     void findAll(){
-        memberRepository.save(MemberTestUtils.getMember());
-
         List<Member> actual = memberRepository.findAll();
 
         assertThat(actual, not(empty()));
@@ -45,38 +43,36 @@ class MemberRepositoryTest {
 
     @Test
     void update(){
-         Member before = memberRepository.save(MemberTestUtils.getMember());
+        Member before = memberRepository.findById(100L).orElseThrow();
 
-         entityManager.detach(before);
+        entityManager.detach(before);
 
-         Member after = Member.builder()
-                 .id(before.getId())
-                 .emailLocal(before.getEmailLocal())
-                 .emailDomain(before.getEmailDomain())
-                 .memberName("afterName")
-                 .password(before.getPassword())
-                 .build();
+        Member after = Member.builder()
+                .id(before.getId())
+                .emailLocal(before.getEmailLocal())
+                .emailDomain(before.getEmailDomain())
+                .memberName("afterName")
+                .password(before.getPassword())
+                .build();
 
-         memberRepository.save(after);
+        memberRepository.save(after);
 
-         Optional<Member> actual = memberRepository.findById(before.getId());
+        Optional<Member> actual = memberRepository.findById(before.getId());
 
-         actual.ifPresent(member -> assertThat(member.getMemberName(), not(equalTo(before.getMemberName()))));
+        actual.ifPresent(member -> assertThat(member.getMemberName(), not(equalTo(before.getMemberName()))));
 
     }
 
     @Test
     void delete(){
-        Member member = memberRepository.save(MemberTestUtils.getMember());
+        Member member = memberRepository.findById(200L).orElseThrow();
 
         entityManager.detach(member);
-
-        assertThat(memberRepository.existsById(member.getId()), is(true));
 
         memberRepository.deleteById(member.getId());
 
-        entityManager.detach(member);
+        boolean result = memberRepository.existsById(member.getId());
 
-        assertThat(memberRepository.existsById(member.getId()), is(false));
+        assertThat(result, is(false));
     }
 }
