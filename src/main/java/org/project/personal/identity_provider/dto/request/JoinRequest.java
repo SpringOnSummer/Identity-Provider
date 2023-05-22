@@ -13,4 +13,6 @@ public class JoinRequest {
     private String memberName;
     private String password;
 
+    private String phoneNumber;
+    private String nickName;
 }
