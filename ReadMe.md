@@ -25,7 +25,7 @@ org.project.personal.identityprovider
 
 #### Security
 1. Spring Security
-2. Oath2 Client
+2. Oauth2 Client
 
 #### SQL
 1. Spring Data Jpa
