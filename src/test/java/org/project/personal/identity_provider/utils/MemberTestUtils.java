@@ -63,8 +63,6 @@ public class MemberTestUtils {
                 .password(passwordEncoder.encode(joinRequest.getPassword()))
                 .build();
 
-        ReflectionTestUtils.setField(member, "id", 100L);
-
         return member;
     }
 
