@@ -7,7 +7,11 @@ import org.project.personal.identity_provider.entity.Member;
 import org.project.personal.identity_provider.repository.MemberRepository;
 import org.project.personal.identity_provider.utils.MembersEmailUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
+@Service
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
@@ -18,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Override
     public Member registerMember(JoinRequest joinRequest) {
 
         MemberEmail email = MembersEmailUtils.convertEmail(joinRequest.getEmail());
@@ -34,22 +39,24 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    @Override
     public Member searchMemberByMemberId(Long id) {
         return memberRepository.findById(id).orElseThrow();
     }
 
+    @Override
     public Member modifyPassword(Long id, MemberPasswordModifyRequest memberModifyRequest) {
 
         Member member = memberRepository.findById(id).orElseThrow();
 
         if (passwordEncoder.matches(memberModifyRequest.getCurrentPassword(), member.getPassword())) {
-            member.modifyPassword(passwordEncoder.encode(memberModifyRequest.getResetPassword()));
+            member.changePassword(passwordEncoder.encode(memberModifyRequest.getResetPassword()));
         }
 
         return member;
     }
 
-
+    @Override
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
