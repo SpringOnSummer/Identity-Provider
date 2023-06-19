@@ -1,5 +1,6 @@
 package org.project.personal.identity_provider.utils;
 
+import org.project.personal.identity_provider.dto.MemberDetailModifyRequest;
 import org.project.personal.identity_provider.dto.request.JoinRequest;
 import org.project.personal.identity_provider.dto.request.MemberEmail;
 import org.project.personal.identity_provider.dto.request.MemberPasswordModifyRequest;
@@ -49,6 +50,15 @@ public class MemberTestUtils {
         return request;
     }
 
+    public static MemberDetailModifyRequest getMemberDetailModifyRequest(){
+        MemberDetailModifyRequest memberDetailModifyRequest = new MemberDetailModifyRequest();
+
+        ReflectionTestUtils.setField(memberDetailModifyRequest, "phoneNumber","010-9876-5432");
+        ReflectionTestUtils.setField(memberDetailModifyRequest, "nickName","changed Nick Name");
+
+        return memberDetailModifyRequest;
+    }
+
     public static Member getMember(){
         JoinRequest joinRequest = getJoinRequest();
 
@@ -69,11 +79,18 @@ public class MemberTestUtils {
     public static MemberDetail getMemberDetail(){
         JoinRequest joinRequest = getJoinRequest();
 
-        return MemberDetail.builder()
+        Member member = getMember();
+
+        MemberDetail memberDetail = MemberDetail.builder()
+                .memberId(member.getId())
                 .nickName(joinRequest.getNickName())
                 .phoneNumber(joinRequest.getPhoneNumber())
                 .joinedAt(LocalDateTime.now())
                 .build();
+
+        ReflectionTestUtils.setField(memberDetail, "member", member);
+
+        return memberDetail;
 
     }
 
