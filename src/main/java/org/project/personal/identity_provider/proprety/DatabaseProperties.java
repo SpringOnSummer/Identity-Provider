@@ -7,8 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-//TODO 06
-// ConfigurationProperties 설정
 @ConfigurationProperties(prefix = "spring.datasource.dbcp2")
 public class DatabaseProperties {
 

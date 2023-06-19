@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,12 +49,13 @@ class MemberRepositoryTest {
         entityManager.detach(before);
 
         Member after = Member.builder()
-                .id(before.getId())
                 .emailLocal(before.getEmailLocal())
                 .emailDomain(before.getEmailDomain())
                 .memberName("afterName")
                 .password(before.getPassword())
                 .build();
+
+        ReflectionTestUtils.setField(after, "id", before.getId());
 
         memberRepository.save(after);
 

@@ -14,13 +14,8 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class DatabaseConfig {
 
-    // TODO 06
-    //  ConfigurationPropertiesScan 으로 읽어들여진 Properties
     private final DatabaseProperties databaseProperties;
 
-
-    // TODO 06
-    //  Supply JDBC connections on Apache Common DBCP 2
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();

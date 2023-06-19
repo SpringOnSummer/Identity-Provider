@@ -44,13 +44,22 @@ public class Member {
     private String password;
 
     @Builder
-    public Member(Long id, String memberName, String emailLocal, String emailDomain, String password) {
-        this.id = id;
+    public Member(String memberName, String emailLocal, String emailDomain, String password) {
         this.memberName = memberName;
         this.emailLocal = emailLocal;
         this.emailDomain = emailDomain;
         this.password = password;
     }
+
+    public void modifyName(String memberName){
+        this.memberName = memberName;
+    }
+
+    public void modifyPassword(String password){
+        this.password = password;
+    }
+
+
 }
 
 

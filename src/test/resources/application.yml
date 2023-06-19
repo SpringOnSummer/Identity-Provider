@@ -9,8 +9,7 @@ spring:
     show-sql: true
     properties:
       hibernate:
-#        table 명을 대문자로 읽는 에러 해결을 위한 설정. ex) Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "member_details" not found (candidates are: "MEMBER_DETAILS");
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: none
