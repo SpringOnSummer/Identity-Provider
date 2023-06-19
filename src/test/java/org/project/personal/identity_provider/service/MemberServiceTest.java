@@ -13,6 +13,7 @@ import org.project.personal.identity_provider.repository.MemberRepository;
 import org.project.personal.identity_provider.utils.MemberTestUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ import static org.mockito.BDDMockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class MemberServiceImplTest {
+class MemberServiceTest {
 
     @Mock
     MemberRepository memberRepository;
@@ -42,6 +43,9 @@ class MemberServiceImplTest {
     void SetUp() {
         joinRequest = MemberTestUtils.getJoinRequest();
         member = MemberTestUtils.getMember();
+
+        ReflectionTestUtils.setField(member, "id", 1L);
+
     }
 
     @Test

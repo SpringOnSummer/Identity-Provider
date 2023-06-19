@@ -64,13 +64,16 @@ class MemberDetailRepositoryTest {
         entityManager.detach(before);
 
         MemberDetail after = MemberDetail.builder()
-                .id(before.getId())
                 .memberId(before.getMemberId())
-                .phoneNumber("010-9876-5432")
+                .phoneNumber(before.getPhoneNumber())
+                .nickName(before.getNickName())
                 .joinedAt(before.getJoinedAt())
                 .build();
 
-        memberDetailRepository.save(after);
+        ReflectionTestUtils.setField(after,"id",100L);
+        after.changePhoneNumber("010-9876-5432");
+
+        entityManager.merge(after);
 
         Optional<MemberDetail> actual = memberDetailRepository.findById(before.getId());
 
