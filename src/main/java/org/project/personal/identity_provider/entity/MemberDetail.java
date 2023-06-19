@@ -48,11 +48,18 @@ public class MemberDetail {
     private LocalDateTime joinedAt;
 
     @Builder
-    public MemberDetail(Long id, Long memberId, String phoneNumber, String nickName, LocalDateTime joinedAt) {
-        this.id = id;
+    public MemberDetail(Long memberId, String phoneNumber, String nickName, LocalDateTime joinedAt) {
         this.memberId = memberId;
         this.phoneNumber = phoneNumber;
         this.nickName = nickName;
         this.joinedAt = joinedAt;
+    }
+
+    public void changeNickName(String nickName){
+        this.nickName = nickName;
+    }
+
+    public void changePhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
     }
 }
