@@ -17,8 +17,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
 /**
- * TODO [데이터 소스 설정]
- * TODO 번호가 매겨진 항목들을 주석 처리하고 실행하면서 데이터 소스를 직접 설정하기 위해서 필요한 부분을 살펴보자.
  * 1. DataSource AutoConfiguration 제외하기
  * 2. Entity 관리를 위한 Entity Manager Factory
  * 3. Entity Manager 가 관리할 Entity 설정하기 (package)
@@ -29,10 +27,15 @@ import static org.hamcrest.CoreMatchers.*;
  */
 @ActiveProfiles("mysql")
 @ContextHierarchy(
-        @ContextConfiguration(classes = {JpaConfig.class, DatabaseConfig.class, DatabaseProperties.class})
+        @ContextConfiguration(classes =
+                {
+                        JpaConfig.class,
+                        DatabaseConfig.class,
+                        DatabaseProperties.class
+                })
 )
 @DataJpaTest
-public class MySQLConnectionTest {
+class MySQLConnectionTest {
 
     @Autowired
     TestEntityManager entityManager;
