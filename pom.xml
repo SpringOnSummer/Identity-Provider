@@ -9,20 +9,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.project.personal</groupId>
-    <artifactId>Identity_Provider</artifactId>
+    <artifactId>identity-provider</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
-    <name>Identity_Provider</name>
-    <description>Identity_Provider</description>
+    <packaging>jar</packaging>
+    <name>identity-provider</name>
+    <description>identity-provider</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.7</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -34,10 +30,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,16 +58,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -105,13 +88,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-            <version>2.9.0</version>
         </dependency>
 
     </dependencies>

@@ -1,7 +1,7 @@
 package org.project.personal.identity_provider.utils;
 
+import org.project.personal.identity_provider.domain.MemberEmail;
 import org.project.personal.identity_provider.dto.request.JoinRequest;
-import org.project.personal.identity_provider.dto.request.MemberEmail;
 import org.project.personal.identity_provider.entity.Member;
 import org.project.personal.identity_provider.entity.MemberDetail;
 import org.springframework.test.util.ReflectionTestUtils;
