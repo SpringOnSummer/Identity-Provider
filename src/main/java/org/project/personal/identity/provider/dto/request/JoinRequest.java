@@ -1,4 +1,4 @@
-package org.project.personal.identity_provider.dto.request;
+package org.project.personal.identity.provider.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

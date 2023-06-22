@@ -1,6 +1,6 @@
-package org.project.personal.identity_provider.utils;
+package org.project.personal.identity.provider.utils;
 
-import org.project.personal.identity_provider.dto.request.MemberEmail;
+import org.project.personal.identity.provider.domain.MemberEmail;
 
 import java.util.StringTokenizer;
 
