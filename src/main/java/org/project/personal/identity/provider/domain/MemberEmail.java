@@ -1,4 +1,4 @@
-package org.project.personal.identity_provider.domain;
+package org.project.personal.identity.provider.domain;
 
 import lombok.Builder;
 import lombok.Getter;

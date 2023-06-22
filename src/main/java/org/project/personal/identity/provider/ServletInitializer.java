@@ -1,4 +1,4 @@
-package org.project.personal.identity_provider;
+package org.project.personal.identity.provider;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

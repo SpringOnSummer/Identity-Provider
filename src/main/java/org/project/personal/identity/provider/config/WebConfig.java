@@ -1,4 +1,4 @@
-package org.project.personal.identity_provider.config;
+package org.project.personal.identity.provider.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
